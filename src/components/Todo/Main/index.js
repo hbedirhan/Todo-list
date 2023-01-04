@@ -1,6 +1,7 @@
-import React from 'react'
 
-function Main() {
+function Main({todoList}) {
+    
+
   return (
 <section className="main">
 		<input className="toggle-all" type="checkbox" />
@@ -15,7 +16,18 @@ function Main() {
 					<label>Learn JavaScript</label>
 					<button className="destroy"></button>
 				</div>
-			</li>
+            </li>
+                {
+                    todoList.map((todo, i) => 
+                    <li key={i}>
+                        <div className="view">
+                            <input className="toggle" type="checkbox" />
+                            <label>{todo}</label>
+                            <button className="destroy"></button>
+                        </div>
+                    </li>)
+                }
+			
 			<li>
 				<div className="view">
 					<input className="toggle" type="checkbox" />

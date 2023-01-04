@@ -1,13 +1,16 @@
-import React from 'react'
+import {useState} from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 
 function Todos() {
+    const [todoList,setTodoList] = useState([]);
+
+
   return (
     <div className="todoapp">
-        <Header/>
-        <Main/>
+        <Header addTodoList={setTodoList} todoList={todoList}/>
+        <Main todoList={todoList}/>
         <Footer/>
         <footer className="info">
             <p>Click to edit a todo</p>
