@@ -1,10 +1,15 @@
 import React from 'react'
 
-function Footer() {
+function Footer({todoList, setTodoList}) {
+
+	const clear = () => {
+		setTodoList([])
+	}
+
   return (
     <footer className="footer">
 		<span className="todo-count">
-			<strong>2</strong>
+			<strong>{todoList.length} </strong>
 			items left
 		</span>
 
@@ -20,7 +25,7 @@ function Footer() {
 			</li>
 		</ul>
 
-		<button className="clear-completed">
+		<button onClick={clear} className="clear-completed">
 			Clear completed
 		</button>
 	</footer>

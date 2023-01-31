@@ -1,47 +1,30 @@
+import {useState} from 'react'
 
-function Main({todoList}) {
-    
+function Main({todoList, setTodoList, todo}) {
+	
+	const deleted = () => {
+		setTodoList(todoList.filter((el) => el.id !== todo.id))
 
+	}
+
+	const [check, setCheck] = useState(true)
+	
   return (
-<section className="main">
-		<input className="toggle-all" type="checkbox" />
+	<section className="main">
+		{/* <input className="toggle-all" type="checkbox" />
 		<label htmlFor="toggle-all">
 			Mark all as complete
-		</label>
+		</label> */}
 
 		<ul className="todo-list">
-			<li className="completed">
+			<li className={`${check ? 'view' : 'completed'}`}>
 				<div className="view">
-					<input className="toggle" type="checkbox" />
-					<label>Learn JavaScript</label>
-					<button className="destroy"></button>
+					<input className="toggle" type="checkbox" onClick={() => setCheck(!check)}/>
+					<label>{todo.text}</label>
+					<button className="destroy" onClick={deleted}></button>
 				</div>
             </li>
-                {
-                    todoList.map((todo, i) => 
-                    <li key={i}>
-                        <div className="view">
-                            <input className="toggle" type="checkbox" />
-                            <label>{todo}</label>
-                            <button className="destroy"></button>
-                        </div>
-                    </li>)
-                }
 			
-			<li>
-				<div className="view">
-					<input className="toggle" type="checkbox" />
-					<label>Learn React</label>
-					<button className="destroy"></button>
-				</div>
-			</li>
-			<li>
-				<div className="view">
-					<input className="toggle" type="checkbox" />
-					<label>Have a life!</label>
-					<button className="destroy"></button>
-				</div>
-			</li>
 		</ul>
 	</section>
   )
